@@ -38,8 +38,12 @@ def callback():
 
     # create new team or update data
     try:
+        print("DEBUGLOG: creating team")
         team = SlackTeam(data)
+        print("DEBUGLOG: " + team)
+        print("DEBUGLOG: adding team")
         db.session.add(team)
+        print("DEBUGLOG: commiting transaction")
         db.session.commit()
         print("Created team " + team.id)
     except IntegrityError:
@@ -49,6 +53,10 @@ def callback():
         db.session.add(team)
         db.session.commit()
         print("Updated tokens for team " + team.id)
+    except Exception as err:
+        print("DEBUGLOG: error happened!")
+        print(err)
+        raise
     return redirect('/installed')
 
 
