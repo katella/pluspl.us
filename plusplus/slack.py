@@ -40,7 +40,7 @@ def callback():
     try:
         print("DEBUGLOG: creating team")
         team = SlackTeam(data)
-        print("DEBUGLOG: " + team)
+        print("DEBUGLOG: " + str(team))
         print("DEBUGLOG: adding team")
         db.session.add(team)
         print("DEBUGLOG: commiting transaction")
